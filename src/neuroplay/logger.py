@@ -27,14 +27,18 @@ def get_logger(name: str) -> logging.Logger:
         datefmt="%Y-%m-%d %H:%M:%S",
     )
 
+    # Force UTF-8 on stdout so emoji/Unicode log messages don't crash on Windows
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(encoding="utf-8")
+
     # Console handler
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
 
-    # File handler
+    # File handler (explicit UTF-8 encoding)
     settings.logs_dir.mkdir(parents=True, exist_ok=True)
-    file_handler = logging.FileHandler(settings.logs_dir / "neuroplay.log")
+    file_handler = logging.FileHandler(settings.logs_dir / "neuroplay.log", encoding="utf-8")
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
