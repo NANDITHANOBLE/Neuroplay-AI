@@ -36,7 +36,7 @@ def main() -> None:
     for factory in persona_factories:
         for _ in range(MATCHES_PER_PERSONA):
             persona = factory()
-            simulate_match(persona, user_id, num_rounds=ROUNDS_PER_MATCH)
+            simulate_match(persona, user_id, num_rounds=ROUNDS_PER_MATCH, model_used=persona.name)
             total_matches += 1
 
     # Generate DriftingBot matches: switches persona mid-match

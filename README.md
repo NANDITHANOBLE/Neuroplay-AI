@@ -1,27 +1,5 @@
-- [ ] Repo pushed to `origin/main` *(confirm this succeeded from earlier)*
-- [ ] `CONTRIBUTING.md` added
-- [ ] Issue template added
-- [ ] CI badge added to README
-- [ ] Phase 2 commit pushed to `main`
-- [ ] CI workflow runs successfully (check **Actions** tab on GitHub)
 
----
 
-## 📌 Note for Later
-
-Add to `ROADMAP.md` or mentally flag: **Phase 25 (Final GitHub Polish)** will introduce:
-- `develop` branch + feature branch workflow
-- Branch protection on `main`
-- PR template
-- Required status checks
-
----
-
-Run Steps 1–5 and paste the output — specifically let me know:
-1. Did `git push origin main` succeed?
-2. Does the **Actions** tab on GitHub show the CI workflow running (green check or red X)?
-
-Once confirmed, Phase 2 is complete and we'll move to **Phase 3: Database Design**.
 
 ## 🗄️ Database Schema
 
@@ -44,3 +22,22 @@ Random, Win-Stay/Lose-Shift, Cyclic, Frequency-Biased, Markov-Order-2, and
 Drifting (mid-match strategy switch, used to validate concept drift detection).
 
 Run: `python -m neuroplay.data_generation.generate_dataset`
+
+## 🧹 Data Preprocessing
+
+Raw gameplay data is loaded from the database, transformed into sliding-window
+sequences (default window size = 5 rounds), and split into train/val/test sets
+at the match level (stratified by persona) to prevent temporal data leakage.
+
+Run: `python -m neuroplay.preprocessing.preprocess_pipeline`
+
+
+## 📊 Exploratory Data Analysis
+
+Validates synthetic persona behavioral signatures via move distribution,
+win/loss/draw rates, move-transition heatmaps, and Lempel-Ziv sequence
+complexity — confirming each of the 6 personas (Random, Win-Stay/Lose-Shift,
+Cyclic, Frequency-Biased, Markov-Order-2, Drifting) exhibits its intended
+distinct behavioral pattern before proceeding to modeling.
+
+Run: `jupyter notebook notebooks/01_exploratory_data_analysis.ipynb`
