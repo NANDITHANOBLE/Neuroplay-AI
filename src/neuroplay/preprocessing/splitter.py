@@ -31,7 +31,7 @@ def split_by_match(windowed_df: pd.DataFrame) -> tuple[pd.DataFrame, pd.DataFram
     train_ids, val_ids, test_ids = [], [], []
 
     for persona, group in match_personas.groupby("model_used"):
-        match_ids = group["match_id"].to_numpy()
+        match_ids = group["match_id"].to_numpy().copy()
         rng.shuffle(match_ids)
 
         n = len(match_ids)
