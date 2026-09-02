@@ -47,9 +47,15 @@ def compute_reaction_time_features(df: pd.DataFrame, window: int = 5) -> pd.Data
 
 
 def compute_last_move_onehot(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    One-hot encodes the PREVIOUS round's move (shifted by 1 within each match).
+    First round of each match has no previous move -> all flags are 0.
+    """
     df = df.copy()
+    df["_prev_move"] = df.groupby("match_id")["player_move"].shift(1)
     for move in Move:
-        df[f"last_move_is_{move.name.lower()}"] = (df["player_move"] == move.value).astype(int)
+        df[f"last_move_is_{move.name.lower()}"] = (df["_prev_move"] == move.value).astype(int)
+    df.drop(columns=["_prev_move"], inplace=True)
     return df
 
 
