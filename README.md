@@ -41,3 +41,16 @@ Cyclic, Frequency-Biased, Markov-Order-2, Drifting) exhibits its intended
 distinct behavioral pattern before proceeding to modeling.
 
 Run: `jupyter notebook notebooks/01_exploratory_data_analysis.ipynb`
+
+
+## 🔧 Feature Engineering
+
+Raw move sequences are transformed into behavioral features:
+- Signed win/loss streak counters (win-stay/lose-shift signal)
+- Rolling win-rate (5 & 20 round windows)
+- Rolling move frequency distribution
+- Reaction time statistics (mean, std)
+- Rolling Lempel-Ziv complexity (predictability signal)
+- Normalized round position
+
+Run: `python -m neuroplay.features.feature_pipeline`
