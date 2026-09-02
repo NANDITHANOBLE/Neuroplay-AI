@@ -54,3 +54,21 @@ Raw move sequences are transformed into behavioral features:
 - Normalized round position
 
 Run: `python -m neuroplay.features.feature_pipeline`
+
+
+## 🎯 Baseline Models
+
+Established benchmark performance before deep learning (Phase 9-11):
+
+| Model | Accuracy | Win Rate |
+|---|---|---|
+| Random | 32.3% | 32.3% |
+| Majority Class | 41.4% | 41.4% |
+| Markov Order-1 | 50.1% | 50.1% |
+| **Markov Order-2** | **57.8%** | **57.8%** |
+
+Markov-2 nearly doubles the random baseline, confirming genuine exploitable
+behavioral patterns exist in the synthetic persona data — validating the
+entire pipeline before investing in deep learning.
+
+Run: `python -m neuroplay.models.run_baselines`
