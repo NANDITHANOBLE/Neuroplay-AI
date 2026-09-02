@@ -58,7 +58,7 @@ Run: `python -m neuroplay.features.feature_pipeline`
 
 ## 🎯 Baseline Models
 
-Established benchmark performance before deep learning (Phase 9-11):
+Established benchmark performance before deep learning :
 
 | Model | Accuracy | Win Rate |
 |---|---|---|
@@ -72,3 +72,20 @@ behavioral patterns exist in the synthetic persona data — validating the
 entire pipeline before investing in deep learning.
 
 Run: `python -m neuroplay.models.run_baselines`
+
+
+## 🧠 ANN Model
+
+A feed-forward neural network (PyTorch) trained on  engineered
+behavioral features, using z-score normalization (critical fix — without
+it, the model collapsed to constant-output prediction).
+
+| Model | Accuracy |
+|---|---|
+| Random Baseline | 32.3% |
+| Majority Baseline | 41.4% |
+| Markov Order-1 | 50.1% |
+| Markov Order-2 | 57.8% |
+| **ANN ** | **70.8%** |
+
+Run: `python -m neuroplay.models.train_ann`
