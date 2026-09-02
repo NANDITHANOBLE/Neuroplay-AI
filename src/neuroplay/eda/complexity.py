@@ -15,7 +15,7 @@ def lempel_ziv_complexity(sequence: list[int]) -> float:
     """
     s = "".join(str(x) for x in sequence)
     n = len(s)
-    if n == 0:
+    if n <= 1:
         return 0.0
 
     i, k, l_ = 0, 1, 1
