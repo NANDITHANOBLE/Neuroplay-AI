@@ -89,3 +89,27 @@ it, the model collapsed to constant-output prediction).
 | **ANN ** | **70.8%** |
 
 Run: `python -m neuroplay.models.train_ann`
+
+
+## 🔮 LSTM Model
+
+An LSTM consuming raw move sequences (5-round window) with learned embeddings
+for player/AI moves.
+
+| Model | Test Accuracy |
+|---|---|
+| Random Baseline | 32.3% |
+| Majority Baseline | 41.4% |
+| Markov Order-1 | 50.1% |
+| Markov Order-2 | 57.8% |
+| LSTM (Phase 10) | 65.9% |
+| **ANN ** | **70.8%** |
+
+**Key finding:** The ANN outperformed the LSTM despite the LSTM having access to
+raw sequential order. This suggests that on this dataset size (~8K training rows)
+and window length (5 rounds), explicit feature engineering (streaks, rolling
+win-rate, LZ complexity) is more sample-efficient than requiring the LSTM to
+discover these temporal patterns independently. The LSTM still meaningfully
+beats the classical Markov-2 baseline, confirming genuine sequence-modeling value.
+
+Run: `python -m neuroplay.models.train_lstm`
