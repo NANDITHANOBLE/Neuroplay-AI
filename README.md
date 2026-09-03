@@ -113,3 +113,27 @@ discover these temporal patterns independently. The LSTM still meaningfully
 beats the classical Markov-2 baseline, confirming genuine sequence-modeling value.
 
 Run: `python -m neuroplay.models.train_lstm`
+
+
+## 🎯 Model Comparison — Final Results
+
+| Model | Test Accuracy | Input |
+|---|---|---|
+| Random Baseline | 32.3% | None |
+| Majority Baseline | 41.4% | None |
+| Markov Order-1 | 50.1% | Last 1 move |
+| Markov Order-2 | 57.8% | Last 2 moves |
+| LSTM | 65.9% | Raw 5-move sequence |
+| Hybrid Transformer | 66.7% | Sequence + engineered features |
+| **ANN (Production Model)** | **70.8%** | Engineered features |
+
+**Key finding:** For short-horizon (5-round) behavioral sequence prediction on
+this dataset, explicit feature engineering (streaks, rolling win-rate, LZ
+complexity) consistently outperforms both LSTM and Transformer sequence models
+— even when the Transformer has access to the same engineered features. This
+demonstrates that architectural sophistication alone doesn't guarantee better
+performance; sample efficiency and domain-informed feature design matter more
+at this data scale. **The ANN is selected as the production model** going into
+Evaluation Framework and beyond.
+
+Run: `python -m neuroplay.models.train_transformer`
