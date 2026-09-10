@@ -163,3 +163,18 @@ used by Explainable AI,RL Agent and
 FastAPI Backend.
 
 Run: `python -m neuroplay.evaluation.run_full_evaluation`
+
+## 🔍 Explainable AI
+
+SHAP (GradientExplainer) provides per-prediction feature attribution for the
+production ANN model — answering "why did the model predict this move?"
+
+Example: for a predicted Scissors move, the model relied most heavily on:
+- Previous round's move (`last_move_is_paper`, `last_move_is_rock`)
+- Rolling sequence complexity (`rolling_lz_complexity_10`)
+- Recent move frequency bias (`move_freq_scissors`)
+
+This confirms the model's reasoning aligns with the behavioral patterns
+(win-stay/lose-shift, frequency bias) validated in  EDA.
+
+Run: `python -m neuroplay.explainability.run_explainability`
