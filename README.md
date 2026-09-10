@@ -137,3 +137,29 @@ at this data scale. **The ANN is selected as the production model** going into
 Evaluation Framework and beyond.
 
 Run: `python -m neuroplay.models.train_transformer`
+
+
+## 📊 Evaluation Framework
+
+Formalized model comparison with statistical rigor:
+
+| Model | Accuracy |
+|---|---|
+| Random Baseline | 35.9% |
+| Majority Baseline | 41.4% |
+| Markov Order-1 | 50.1% |
+| Markov Order-2 | 57.8% |
+| **ANN (Selected)** | **70.8%** |
+
+**McNemar's test** confirms the ANN's improvement over Markov Order-2 is
+statistically significant (p < 0.0001) — not due to random chance.
+
+*Note: LSTM (65.9%) and Transformer (66.7%) are tracked
+separately and excluded from this automated leaderboard; both underperformed
+the ANN and are not candidates for production selection.*
+
+The ANN is saved as `models/selected_model.json` — the canonical reference
+used by Explainable AI,RL Agent and
+FastAPI Backend.
+
+Run: `python -m neuroplay.evaluation.run_full_evaluation`

@@ -1,0 +1,47 @@
+{
+  "mean": {
+    "streak_count": 0.013214285714285715,
+    "rolling_win_rate_5": 0.3363988095238095,
+    "rolling_win_rate_20": 0.3380516487219965,
+    "move_freq_rock": 0.3932283635676493,
+    "move_freq_paper": 0.30024754346182914,
+    "move_freq_scissors": 0.3065240929705216,
+    "reaction_time_mean_5": 498.17975396825386,
+    "reaction_time_std_5": 163.76860706650012,
+    "last_move_is_rock": 0.39035714285714285,
+    "last_move_is_paper": 0.29464285714285715,
+    "last_move_is_scissors": 0.305,
+    "round_number_normalized": 0.505,
+    "rolling_lz_complexity_10": 1.578215633977207
+  },
+  "std": {
+    "streak_count": 1.4012535512805213,
+    "rolling_win_rate_5": 0.22186991255709232,
+    "rolling_win_rate_20": 0.1314317524901078,
+    "move_freq_rock": 0.20141840468870859,
+    "move_freq_paper": 0.157280783306259,
+    "move_freq_scissors": 0.158608555402574,
+    "reaction_time_mean_5": 79.69094308375435,
+    "reaction_time_std_5": 49.8777562102136,
+    "last_move_is_rock": 0.4878593834475168,
+    "last_move_is_paper": 0.4559091886601213,
+    "last_move_is_scissors": 0.4604348359144713,
+    "round_number_normalized": 0.28867788419604923,
+    "rolling_lz_complexity_10": 0.3778461216313261
+  },
+  "feature_columns": [
+    "streak_count",
+    "rolling_win_rate_5",
+    "rolling_win_rate_20",
+    "move_freq_rock",
+    "move_freq_paper",
+    "move_freq_scissors",
+    "reaction_time_mean_5",
+    "reaction_time_std_5",
+    "last_move_is_rock",
+    "last_move_is_paper",
+    "last_move_is_scissors",
+    "round_number_normalized",
+    "rolling_lz_complexity_10"
+  ]
+}

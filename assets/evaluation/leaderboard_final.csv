@@ -1,0 +1,6 @@
+model,accuracy
+ann_model,0.7078
+markov_order2_baseline,0.5784
+markov_order1_baseline,0.5006
+majority_baseline,0.414
+random_baseline,0.3591

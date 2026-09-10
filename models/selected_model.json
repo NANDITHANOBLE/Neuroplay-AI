@@ -1,0 +1,33 @@
+{
+  "selected_model": "ann_model",
+  "accuracy": 0.7078,
+  "weights_path": "C:\\Users\\NandithaNoble\\OneDrive - Ogilvy\\Documents\\neuroplay-ai\\models\\ann\\ann_best.pt",
+  "scaler_path": "C:\\Users\\NandithaNoble\\OneDrive - Ogilvy\\Documents\\neuroplay-ai\\models\\ann\\feature_scaler.json",
+  "significance_vs_markov2": {
+    "statistic": 237.0,
+    "p_value": 2.501810695859951e-26,
+    "significant": true
+  },
+  "leaderboard": [
+    {
+      "model": "ann_model",
+      "accuracy": 0.7078
+    },
+    {
+      "model": "markov_order2_baseline",
+      "accuracy": 0.5784
+    },
+    {
+      "model": "markov_order1_baseline",
+      "accuracy": 0.5006
+    },
+    {
+      "model": "majority_baseline",
+      "accuracy": 0.414
+    },
+    {
+      "model": "random_baseline",
+      "accuracy": 0.3591
+    }
+  ]
+}
