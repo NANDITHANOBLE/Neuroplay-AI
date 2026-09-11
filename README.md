@@ -262,3 +262,15 @@ independent configs for import-sorting behavior. An aliased combined import
 
 Run: `uvicorn backend.app.main:app --reload --port 8000`
 Interactive docs: `http://127.0.0.1:8000/docs`
+
+## 🗄️ Database Integration
+
+- **Alembic migrations**: versioned schema management (`database/migrations/`)
+- **Connection pooling**: `QueuePool` for PostgreSQL (production), `NullPool`
+  for SQLite (dev) — auto-selected based on `DATABASE_URL`
+- **Self-play data export**: real gameplay logged via the API is
+  exported through the same feature pipeline as  synthetic data,
+  closing the adaptive learning loop
+
+Run: `python -m neuroplay.db.export_selfplay_data`
+Generate new migration: `alembic -c database/alembic.ini revision --autogenerate -m "description"`
