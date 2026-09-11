@@ -2,7 +2,7 @@
 Game endpoints — start a match, play a round, retrieve match history.
 """
 
-import random
+import random  # noqa: I001
 from datetime import datetime
 
 from fastapi import APIRouter, Depends, HTTPException
