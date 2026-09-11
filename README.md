@@ -236,3 +236,29 @@ replaced the legacy `solutions.hands` API with a new Tasks API, breaking
 this implementation.
 
 Run: `python -m neuroplay.cv.run_webcam_demo`
+
+## 🚀 FastAPI Backend
+
+REST API unifying the ANN predictor, database, and game logic behind clean
+endpoints:
+
+| Endpoint | Method | Purpose |
+|---|---|---|
+| `/health` | GET | Liveness check |
+| `/game/start` | POST | Start a new match |
+| `/game/play` | POST | Submit a move, get AI response |
+| `/game/{match_id}/history` | GET | Full match history |
+| `/leaderboard` | GET | Top users by win rate |
+| `/explain/{move_id}` | GET | SHAP explanation for a prediction |
+
+Models load once at startup (via `lru_cache` dependency injection) — not
+per-request — critical for API latency.
+
+**Debugging note:** Discovered `isort` and `ruff` maintain *separate*
+independent configs for import-sorting behavior. An aliased combined import
+(`from x import A, B as C`) caused an infinite fix-loop until
+`combine-as-imports = true` was set in **both** `[tool.isort]` and
+`[tool.ruff.lint.isort]` in `pyproject.toml`.
+
+Run: `uvicorn backend.app.main:app --reload --port 8000`
+Interactive docs: `http://127.0.0.1:8000/docs`
