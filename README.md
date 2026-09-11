@@ -274,3 +274,21 @@ Interactive docs: `http://127.0.0.1:8000/docs`
 
 Run: `python -m neuroplay.db.export_selfplay_data`
 Generate new migration: `alembic -c database/alembic.ini revision --autogenerate -m "description"`
+
+## 🎨 Streamlit Frontend
+
+Multi-page Streamlit app consuming the FastAPI backend exclusively
+via HTTP (no direct model/DB imports from the frontend):
+
+- **🎮 Play** — Keyboard-based gameplay with live score tracking
+- **📷 Webcam** — MediaPipe gesture-based gameplay (Phase 16 integration)
+- **🏆 Leaderboard** — Top players by win rate
+
+**Debugging note:** Streamlit executes each page as a standalone script, not
+as a package — relative imports (`from .config import ...`) fail with
+`ImportError: attempted relative import with no known parent package`.
+Fixed via absolute imports + explicit `sys.path.insert()` at the top of each
+entry file.
+
+Run backend first: `uvicorn backend.app.main:app --reload --port 8000`
+Then: `streamlit run frontend/streamlit_app/app.py`
