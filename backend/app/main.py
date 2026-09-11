@@ -1,0 +1,46 @@
+"""
+NeuroPlay-AI FastAPI application entry point.
+Run: uvicorn backend.app.main:app --reload --port 8000
+"""
+
+from contextlib import asynccontextmanager
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from neuroplay.db.init_db import init_db
+from neuroplay.logger import get_logger
+
+from .dependencies import get_ann_model
+from .routers import explain, game, leaderboard
+
+logger = get_logger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    logger.info("Starting NeuroPlay-AI backend...")
+    init_db()
+    get_ann_model()  # Warms the cache — model loads once here, not per-request
+    logger.info("✅ Backend ready.")
+    yield
+    logger.info("Shutting down NeuroPlay-AI backend...")
+
+
+app = FastAPI(title="NeuroPlay-AI API", version="0.1.0", lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Tighten in Phase 23 (Deployment)
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.include_router(game.router)
+app.include_router(leaderboard.router)
+app.include_router(explain.router)
+
+
+@app.get("/health")
+def health_check():
+    return {"status": "ok", "service": "NeuroPlay-AI"}
