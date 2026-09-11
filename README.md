@@ -218,3 +218,21 @@ agent successfully learns to exploit exploitable personas (Cyclic, Markov-2,
 Frequency-Biased) rather than playing a static counter-strategy.
 
 Run: `python -m neuroplay.rl.train_dqn`
+
+## 📷 Computer Vision Module
+
+Rule-based Rock/Paper/Scissors gesture classification using MediaPipe hand
+landmarks (21-point detection) + a finger-extension heuristic — no custom
+model training required.
+
+**Debugging note:** Initial Scissors detection failed due to an overly
+strict requirement that the ring finger be fully curled — biomechanically
+inconsistent across users and sensitive to hand rotation. Relaxed to require
+only index+middle clearly extended and pinky curled, tolerating ring-finger
+ambiguity.
+
+⚠️ Also required pinning `mediapipe==0.10.14` — the latest release (1.0.1)
+replaced the legacy `solutions.hands` API with a new Tasks API, breaking
+this implementation.
+
+Run: `python -m neuroplay.cv.run_webcam_demo`
