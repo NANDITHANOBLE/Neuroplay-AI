@@ -12,3 +12,5 @@ torch==2.4.1
 scikit-learn==1.5.1
 statsmodels==0.14.2
 shap==0.46.0
+opencv-python==4.10.0.84
+mediapipe==0.10.14
