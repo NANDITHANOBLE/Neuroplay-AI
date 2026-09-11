@@ -8,9 +8,7 @@ from datetime import datetime, timedelta
 
 from neuroplay.constants import BEATS, Move
 from neuroplay.data_generation.personas import BasePersona
-from neuroplay.db.models import Match
-from neuroplay.db.models import Move as MoveModel
-from neuroplay.db.models import User
+from neuroplay.db.models import Match, Move as MoveModel, User
 from neuroplay.db.session import get_session
 from neuroplay.logger import get_logger
 
