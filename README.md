@@ -197,3 +197,24 @@ sub-window comparison approach proved more robust to this noisier stream and
 is selected as the production drift detector.
 
 Run: `python -m neuroplay.drift.run_drift_detection`
+
+## 🤖 Reinforcement Learning Agent
+
+A DQN agent learns optimal counter-strategy policy (not just "counter the
+prediction") by training against a mixed pool of persona bots, with reward
++1/win, 0/draw, -1/loss.
+
+**Training progress (500 episodes):**
+
+| Episode | Avg Reward (last 50) | Epsilon |
+|---|---|---|
+| 50 | 2.28 | 0.778 |
+| 200 | 18.48 | 0.367 |
+| 350 | 29.52 | 0.173 |
+| 500 | **35.50** | 0.082 |
+
+Clean, monotonic improvement as exploration (epsilon) decays — confirming the
+agent successfully learns to exploit exploitable personas (Cyclic, Markov-2,
+Frequency-Biased) rather than playing a static counter-strategy.
+
+Run: `python -m neuroplay.rl.train_dqn`
