@@ -178,3 +178,22 @@ This confirms the model's reasoning aligns with the behavioral patterns
 (win-stay/lose-shift, frequency bias) validated in  EDA.
 
 Run: `python -m neuroplay.explainability.run_explainability`
+
+
+## 🌊 Concept Drift Detection
+
+Two detectors implemented and validated against  `DriftingBot`
+ground truth (persona switch at round 50):
+
+| Detector | Detection Rate | Avg Latency |
+|---|---|---|
+| **ADWIN (selected)** | **95%** | **16.1 rounds** |
+| DDM | 5% | N/A (too conservative) |
+
+**Finding:** DDM's 3-sigma threshold is calibrated for low-baseline-error
+classifiers. Our ANN's ~29% baseline error rate (70.8% accuracy) makes the
+persona-switch signal too subtle relative to DDM's strict threshold. ADWIN's
+sub-window comparison approach proved more robust to this noisier stream and
+is selected as the production drift detector.
+
+Run: `python -m neuroplay.drift.run_drift_detection`
