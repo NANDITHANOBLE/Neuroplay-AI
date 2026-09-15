@@ -12,7 +12,7 @@ from neuroplay.db.init_db import init_db
 from neuroplay.logger import get_logger
 
 from .dependencies import get_ann_model
-from .routers import analytics, explain, game, leaderboard
+from .routers import analytics, explain, game, leaderboard, psychology
 
 logger = get_logger(__name__)
 
@@ -40,6 +40,7 @@ app.include_router(game.router)
 app.include_router(leaderboard.router)
 app.include_router(explain.router)
 app.include_router(analytics.router)
+app.include_router(psychology.router)
 
 
 @app.get("/health")
