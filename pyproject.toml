@@ -39,3 +39,21 @@ warn_unused_ignores = true
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-v --tb=short"
+
+[tool.coverage.run]
+omit = [
+    "src/neuroplay/cv/*",
+    "src/neuroplay/models/train_*.py",
+    "src/neuroplay/models/run_baselines.py",
+    "src/neuroplay/eda/visualizations.py",
+    "src/neuroplay/explainability/plot_explanations.py",
+    "src/neuroplay/explainability/run_explainability.py",
+    "src/neuroplay/evaluation/run_full_evaluation.py",
+    "src/neuroplay/drift/run_drift_detection.py",
+    "src/neuroplay/rl/train_dqn.py",
+    "src/neuroplay/db/export_selfplay_data.py",
+    "src/neuroplay/preprocessing/preprocess_pipeline.py",
+    "src/neuroplay/features/feature_pipeline.py",
+    "src/neuroplay/data_generation/generate_dataset.py",
+    "src/neuroplay/data_generation/simulator.py",
+]

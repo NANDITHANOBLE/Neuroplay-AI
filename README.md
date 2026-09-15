@@ -328,3 +328,23 @@ Requires 10+ rounds played to unlock. Directly builds on EDA
 complexity metrics and  explainability groundwork.
 
 Run: `python -m streamlit run frontend/streamlit_app/app.py`
+
+
+## 🧪 Testing
+
+28 tests across 8 test modules, covering:
+- Feature engineering (streaks, rolling stats, LZ complexity)
+- Baseline model logic (Markov, Majority)
+- Synthetic persona behavioral correctness
+- Database ORM relationships and constraints
+- FastAPI endpoints (via `TestClient`)
+- Concept drift detection (ADWIN)
+- Preprocessing (windowing, match-level splitting)
+- Feature scaling and evaluation harness
+
+**Coverage: 52%** on business logic (training scripts, visualization
+utilities, and hardware-dependent CV code are intentionally excluded from
+coverage scope — these require integration/manual testing rather than
+unit tests, per standard practice for ML training pipelines).
+
+Run: `python -m pytest --cov=src --cov=backend --cov-report=term-missing`
