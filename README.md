@@ -348,3 +348,14 @@ coverage scope — these require integration/manual testing rather than
 unit tests, per standard practice for ML training pipelines).
 
 Run: `python -m pytest --cov=src --cov=backend --cov-report=term-missing`
+
+## 🚢 Deployment
+
+Full-stack containerization via Docker:
+- `Dockerfile.backend` — FastAPI service (port 8000)
+- `Dockerfile.frontend` — Streamlit service (port 8501)
+- `docker-compose.yml` — orchestrates both services with health-check-gated
+  startup ordering (frontend waits for backend to be healthy)
+
+**Note:** Docker configs are provided and reviewed for correctness, but not
+live-tested in this development environment.

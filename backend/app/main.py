@@ -3,6 +3,7 @@ NeuroPlay-AI FastAPI application entry point.
 Run: uvicorn backend.app.main:app --reload --port 8000
 """
 
+import os
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI
@@ -29,10 +30,13 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title="NeuroPlay-AI API", version="0.1.0", lifespan=lifespan)
 
+
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:8501").split(",")
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Tighten in Phase 23 (Deployment)
-    allow_methods=["*"],
+    allow_origins=ALLOWED_ORIGINS,
+    allow_methods=["GET", "POST"],
     allow_headers=["*"],
 )
 
