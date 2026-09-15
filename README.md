@@ -292,3 +292,22 @@ entry file.
 
 Run backend first: `uvicorn backend.app.main:app --reload --port 8000`
 Then: `streamlit run frontend/streamlit_app/app.py`
+
+
+## 📈 Analytics Dashboard
+
+Aggregate gameplay statistics visualized via Plotly, pulled from a new
+`/analytics/{username}` endpoint:
+- Move distribution bar chart
+- Win/Loss/Draw pie chart
+- Rolling win-rate trend line across all matches
+
+**Debugging notes from this phase:**
+- Fixed a critical PATH resolution issue: multiple Python installations
+  (system 3.14 vs. project venv 3.11.9) caused Streamlit to run against the
+  wrong environment, hiding installed packages (`cv2`, `plotly`). Resolved
+  by invoking via `python -m streamlit run ...` instead of bare `streamlit`.
+- Fixed a `main.py` router-registration bug where `app.include_router(...)`
+  was called before `app = FastAPI(...)` was defined.
+
+Run: `python -m streamlit run frontend/streamlit_app/app.py`
