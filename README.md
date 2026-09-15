@@ -311,3 +311,20 @@ Aggregate gameplay statistics visualized via Plotly, pulled from a new
   was called before `app = FastAPI(...)` was defined.
 
 Run: `python -m streamlit run frontend/streamlit_app/app.py`
+
+
+## 🧬 Psychology Dashboard
+
+Classifies a player's dominant behavioral pattern from real gameplay history:
+
+| Pattern | Detection Signal |
+|---|---|
+| Win-Stay/Lose-Shift | High move-repeat-after-win / move-switch-after-loss rate |
+| Frequency Biased | One move played >45% of the time |
+| Cyclic | Low Lempel-Ziv complexity (highly predictable sequence) |
+| Unpredictable | High LZ complexity, no dominant pattern |
+
+Requires 10+ rounds played to unlock. Directly builds on EDA
+complexity metrics and  explainability groundwork.
+
+Run: `python -m streamlit run frontend/streamlit_app/app.py`
